@@ -1,0 +1,63 @@
+* Heading
+LCE_UT_single_element
+**
+*Node, nset=nAll
+      1,          0.0,          0.0,          0.0
+      2,          1.0,          0.0,          0.0
+      3,          1.0,          1.0,          0.0
+      4,          0.0,          1.0,          0.0
+      5,          0.0,          0.0,          1.0
+      6,          1.0,          0.0,          1.0
+      7,          1.0,          1.0,          1.0
+      8,          0.0,          1.0,          1.0
+**
+*User Element,Type=U1,Nodes=8,Coordinates=3,Properties=12,Iproperties=1,Variables=168,Unsymm
+1,2,3
+**
+*element,type=U1,elset=elall
+    1,     1,     2,     3,     4,     5,     6,     7,     8
+**
+*ELEMENT,TYPE=C3D8,ELSET=ElDummy
+    2,     1,     2,     3,     4,     5,     6,     7,     8
+**
+*uel property,elset=elall
+**  Q    Im   Mueq  Muneq etaD0  etaN      ks       d0_1
+  0.6167, 5.7, 0.25, 1.25, 40.0, 800.0, 0.7, 0.8660,
+** d0_2 d0_3 lambda gamma
+ 0.5, 0.0, 250.0, 2.5
+*Solid section, elset=ElDummy, material=dummymaterial
+*Material, name=dummymaterial
+** The dummy mesh stiffness is very small
+*Elastic
+1.e-20
+*user output variables
+30
+**
+*Step, name=ST, nlgeom=YES, unsymm=yes, inc=50000
+*Static
+0.01, 10.0, 1e-05, 0.01
+**
+*boundary
+1,1,1,0.0
+1,2,2,0.0
+1,3,3,0.0
+2,3,3,0.0
+3,3,3,0.0
+4,1,1,0.0
+4,3,3,0.0
+5,1,1,0.0
+5,2,2,0.0
+8,1,1,0.0
+*boundary
+7,1,1,1.00
+2,1,1,1.00
+3,1,1,1.00
+6,1,1,1.00
+**
+*Output, field, time interval=0.1
+*node output, nset=nAll
+u
+*element output, elset=eldummy
+uvarm
+**
+*End Step
